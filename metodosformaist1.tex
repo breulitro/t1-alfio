@@ -56,6 +56,18 @@ powc(2, 3) &= powacc(2, 3, 1)\\
 \end{align*}
 
 \section{Segundo Problema}
+O segundo problema é fazer um algorítmo que compute um somatório.
+
+\noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$\rightarrow \mathbb{Z}$\\
+somai(i, i) = i\\
+somai(i, s) = s + somai(i, s-1)\\
+Computação:
+\begin{align*}
+somai(-3, -1) &= (-1) + somai(-3, -2)\\
+&= (-1) + (-2) + somai(-3, -3)\\
+&= (-1) + (-2) + (-3)\\
+&= -6
+\end{align*}
 \section{Terceiro Problema}
 \section{Conclusão}
 \end{document}
