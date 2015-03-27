@@ -6,7 +6,12 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 
+\title{Trabalho 1 de Métodos Formais para a Computação}
+\author{Cristiano Bolla Fernandes, Benito Michelon e Silva}
+\address{Faculdade de Informática -- Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)}
+
 \begin{document}
+\maketitle
 \begin{center}
 Pontifícia Universidade Católica do Rio Grande do Sul\\
 Cristiano Bolla Fernandes\\
@@ -37,7 +42,7 @@ pow(2,3) &= mult(2, pow(2, 2))\\
 powc(b, e) = powacc(b, e, 1)\\
 onde\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$\rightarrow \mathbb{N}$\\
-\indent \textbf{invariante:} $\forall$i:$\mathbb{N}.powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
+\indent \textbf{invariante:} $\forall$i:$\mathbb{N}. powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
 \indent powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\
 
@@ -50,4 +55,7 @@ powc(2, 3) &= powacc(2, 3, 1)\\
 &= 8
 \end{align*}
 
+\section{Segundo Problema}
+\section{Terceiro Problema}
+\section{Conclusão}
 \end{document}
