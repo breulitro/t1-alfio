@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{sbc-template}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul\\
+Cristiano Bolla Fernandes\\
+Benito Michelon e Silva
+\end{center}
+\section{Introdução}
+
+\section{Primeiro Problema}
+O primeiro problema consiste em definir um algorítmo recursivo para obter a potenciação sobre o conjunto dos números naturais.
+Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
+pow: $\mathbb{N}$x$\mathbb{N}$$\rightarrow \mathbb{N}$\\
+pow(b, 0) = 1\\
+pow(b, e+1) = mult(b, pow(b, e))\\
+
+Computação:\\
+\begin{align*}
+pow(2,3) &= mult(2, pow(2, 2))\\
+&= mult(2, mult(2, pow(2, 1)))\\
+&= mult(2, mult(2, mult(2, pow(2, 0))))\\
+&= mult(2, mult(2, mult(2, 1)))\\
+&= mult(2, mult(2, 2))\\
+&= mult(2, 4)\\
+&= 8
+\end{align*}
+
+\noindent powc: $\mathbb{N}$x$\mathbb{N}$$\rightarrow \mathbb{N}$\\
+powc(b, e) = powacc(b, e, 1)\\
+onde\\
+\indent powacc: $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$\rightarrow \mathbb{N}$\\
+\indent powacc(b, 0, a) = a\\
+\indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\
+
+Computação:\\
+\begin{align*}
+powc(2, 3) &= powacc(2, 3, 1)\\
+&= powacc(2, 2, 2)\\
+&= powacc(2, 1, 4)\\
+&= powacc(2, 0, 8)\\
+&= 8
+\end{align*}
+\end{document}
