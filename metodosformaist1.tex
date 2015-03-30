@@ -23,6 +23,7 @@ terceiro problema é implementar um algorítmo que compute o enézimo número da
 O primeiro problema consiste em definir um algorítmo recursivo para obter a potenciação sobre o conjunto dos números naturais.
 Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
 Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
+\\
 \textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 pow(b, 0) = 1\\
 pow(b, e+1) = mult(b, pow(b, e))\\
@@ -57,7 +58,9 @@ powc(2, 3) &= powacc(2, 3, 1)\\
 
 \section{Segundo Problema}
 O segundo problema é fazer um algorítmo que compute um somatório.
-
+Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
+\\
 \noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
 somai(i, i) = i\\
 somai(i, s) = s + somai(i, s-1)\\
@@ -87,6 +90,9 @@ somaic(1, 5) &= somacc(1, 5, 0)\\
 
 \section{Terceiro Problema}
 O terceiro problema é calcular o enézimo número da série de Fibonacci. O próximo número da série é obtido pela soma do atual com o anterior.\\
+Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
+\\
 \textbf{fib:}$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
 fib(1) = 1\\
 fib(2) = 1\\
@@ -119,4 +125,7 @@ fibc(6) &= fibacc(6, 0, 1)\\
 \end{align*}
 
 \section{Conclusão}
+Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
+Demonstramos o funcionamento de cada uma das soluções mostrando a execução dos algorítmos e chegamos nos resultados esperados.
+Assim terminamos o primeiro trabalho da cadeira de Métodos Formais para a Computação.
 \end{document}
