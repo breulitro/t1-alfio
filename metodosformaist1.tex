@@ -75,6 +75,7 @@ onde\\
 \indent \textbf{invariante:} $\forall k:\mathbb{N}.\: somacc(i_0, s_0, a_0) = somacc(i_k, s_k, a_k)$\\
 \indent somacc(i, i, a) = i + a\\
 \indent somacc(i, s, a) = somacc(i, s-1, a+s)\\
+Computação:
 \begin{align*}
 somaic(1, 5) &= somacc(1, 5, 0)\\
 &= somacc(1, 4, 5)\\
@@ -83,8 +84,39 @@ somaic(1, 5) &= somacc(1, 5, 0)\\
 &= somacc(1, 1, 14)\\
 &= 15
 \end{align*}
+
 \section{Terceiro Problema}
-O terceiro problema é calcular o enézimo número da série de Fibonacci.
-\textbf{fibc:} $\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+O terceiro problema é calcular o enézimo número da série de Fibonacci.\\
+\textbf{fib:}$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+fib(1) = 1\\
+fib(2) = 1\\
+fib(x+2) = fib(x+1) + fib(x)\\
+Computação:
+\begin{align*}
+fib(5) &= fib(4) + fib(3)\\
+&= fib(3) + fib(2) + fib(2) + fib(1)\\
+&= fib(2) + fib(1) + 1 + 1 + 1\\
+&= 1 + 1 + 1 + 1 + 1\\
+&= 5
+\end{align*}
+
+\noindent\textbf{fibc:} $\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+fibc(n) = fibacc(n, 0, 1)\\
+onde\\
+\indent \textbf{fibacc:} $\mathbb{N}^*$x$\mathbb{N}$x$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: fibacc(n_0, p_0, a_0) = fibacc(n_k, p_k, a_k)$\\
+\indent fibacc(1, p, a) = a\\
+\indent fibacc(n+1, p, a) = fibacc(n, a, p+a)\\
+Computação:
+\begin{align*}
+fibc(6) &= fibacc(6, 0, 1)\\
+&= fibacc(5, 1, 1)\\
+&= fibacc(4, 1, 2)\\
+&= fibacc(3, 2, 3)\\
+&= fibacc(2, 3, 5)\\
+&= fibacc(1, 5, 8)\\
+&= 8
+\end{align*}
+
 \section{Conclusão}
 \end{document}
