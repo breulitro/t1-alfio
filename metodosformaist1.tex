@@ -25,8 +25,9 @@ Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
 Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
 \\
 \textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
-pow(b, 0) = 1\\
-pow(b, e+1) = mult(b, pow(b, e))\\
+$pow(b, 0) = 1\\
+pow(b, e+1) = mult(b, pow(b, e))\\$
+\\
 
 Computação:\\
 \begin{align*}
@@ -40,12 +41,13 @@ pow(2,3) &= mult(2, pow(2, 2))\\
 \end{align*}
 
 \noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
-powc(b, e) = powacc(b, e, 1)\\
+$powc(b, e) = powacc(b, e, 1)\\$
+\\
 onde\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
-\indent powacc(b, 0, a) = a\\
-\indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\
+\indent $powacc(b, 0, a) = a\\
+\indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
 Computação:\\
 \begin{align*}
@@ -62,8 +64,9 @@ Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
 Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
 \\
 \noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
-somai(i, i) = i\\
-somai(i, s) = s + somai(i, s-1)\\
+$somai(i, i) = i\\
+somai(i, s) = s + somai(i, s-1)\\$
+\\
 Computação:
 \begin{align*}
 somai(-3, -1) &= (-1) + somai(-3, -2)\\
@@ -72,12 +75,14 @@ somai(-3, -1) &= (-1) + somai(-3, -2)\\
 &= -6
 \end{align*}
 \noindent \textbf{somaic:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
-somaic(i, s) = somacc(i, s, 0)\\
+$somaic(i, s) = somacc(i, s, 0)\\$
+\\
 onde\\
 \indent \textbf{somacc:} $\mathbb{Z}$x$\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
 \indent \textbf{invariante:} $\forall k:\mathbb{N}.\: somacc(i_0, s_0, a_0) = somacc(i_k, s_k, a_k)$\\
-\indent somacc(i, i, a) = i + a\\
-\indent somacc(i, s, a) = somacc(i, s-1, a+s)\\
+\indent $somacc(i, i, a) = i + a\\
+\indent somacc(i, s, a) = somacc(i, s-1, a+s)\\$
+\\
 Computação:
 \begin{align*}
 somaic(1, 5) &= somacc(1, 5, 0)\\
@@ -94,9 +99,10 @@ Foi requisitado dois algorítmos, um recursivo na cauda e o outro não.\\
 Para ambos será exposta uma computação para fins de demonstrar a correteza do algorítmo.\\
 \\
 \textbf{fib:}$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
-fib(1) = 1\\
+$fib(1) = 1\\
 fib(2) = 1\\
-fib(x+2) = fib(x+1) + fib(x)\\
+fib(x+2) = fib(x+1) + fib(x)\\$
+\\
 Computação:
 \begin{align*}
 fib(5) &= fib(4) + fib(3)\\
@@ -107,12 +113,14 @@ fib(5) &= fib(4) + fib(3)\\
 \end{align*}
 
 \noindent\textbf{fibc:} $\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
-fibc(n) = fibacc(n, 0, 1)\\
+$fibc(n) = fibacc(n, 0, 1)\\$
+\\
 onde\\
 \indent \textbf{fibacc:} $\mathbb{N}^*$x$\mathbb{N}$x$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
 \indent \textbf{invariante:} $\forall k:\mathbb{N}.\: fibacc(n_0, p_0, a_0) = fibacc(n_k, p_k, a_k)$\\
-\indent fibacc(1, p, a) = a\\
-\indent fibacc(n+1, p, a) = fibacc(n, a, p+a)\\
+\indent $fibacc(1, p, a) = a\\
+\indent fibacc(n+1, p, a) = fibacc(n, a, p+a)\\$
+\\
 Computação:
 \begin{align*}
 fibc(6) &= fibacc(6, 0, 1)\\
@@ -127,7 +135,11 @@ fibc(6) &= fibacc(6, 0, 1)\\
 \section{Conclusão}
 Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
 Demonstramos o funcionamento de cada uma das soluções mostrando a execução dos algorítmos e chegamos nos resultados esperados.
-Assim terminamos o primeiro trabalho da cadeira de Métodos Formais para a Computação.
+As invariantes desempenham um papel crítico na evolução do desenvolvimento de software. Apartir do conhecimento
+adquirido em aula e através deste trabalho, percebemos que a identificação da invariante pode proteger um programador
+de implementar algoritmos errados pela falta de compreensão do problema, além de fazer alterações que podem modificar o
+comportamento correto de um programa, ou seja, não entender as invariantes que ocorrem
+no problema torna muito fácil introduzir novos erros em um código já funcional.
 
 \begin{thebibliography}{9}
 \bibitem{invariants}
