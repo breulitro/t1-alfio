@@ -16,9 +16,8 @@
 
 \section{Introdução}
 Este trabalho tem por objetivo solidificar os conhecimentos adquiridos na disciplina de Métodos Formais para a Computação.
-O trabalho consiste na criação de algoritmos para a resolução de três problemas. O primeiro é implementar um algoritmo que calcule a
-potência de um número natural com um expoente natural também. O segundo problema é fazer um programa que realize o somatório e o
-terceiro problema é implementar um algoritmo que compute o enézimo número da sequencia de Fibonacci.
+O trabalho será realizado com base no trabalho 1, escolhendo 2 dos 3 problemas resolvidos para provar por indução parcial a sua correção.
+Os problemas escolhidos foram a potenciação e o somatório.
 
 \section{Primeiro Problema}
 O primeiro problema consiste em definir um algoritmo recursivo para obter a potenciação sobre o conjunto dos números naturais.
@@ -59,11 +58,16 @@ LHS &= pow(x+1, y) && (def. LHS)\\
 &= RHS \\
 & q.e.d
 \end{align*}
+
 \noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+\textbf{requer:} $\top$\\
+\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
 $powc(b, e) = powacc(b, e, 1)\\$
 \\
 onde\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+\indent \textbf{requer:} $\top$\\
+\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e, 1) = $b^e$\\
 \indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
