@@ -26,14 +26,14 @@ Para ambos será exposta uma computação para fins de demonstrar a correção d
 \\
 \textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \textbf{requer:} $\top$\\
-\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
+\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
 pow(0, e) = 0\\
 pow(b, 0) = 1\\
 pow(b, e+1) = mult(b, pow(b, e))\\
 \\
 Iremos provar que $\forall$b:$\mathbb{N}.\:\forall$e:$\mathbb{N}.\:\top\rightarrow$ pow(b, e) = $b^e$. Pela tabela verdade da implicação, é suficiente mostrar que:\\
 \begin{center}
-P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
+P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
 P(x) $\triangleq$ $\forall$e:$\mathbb{N}$ pow(x, e) = x$^e$\\
 \end{center}
 \textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$e:$\mathbb{N}$ pow(0, e) = 0$^e$\\
@@ -47,7 +47,7 @@ LHS &= pow(0, n) && (def. LHS)\\
 & q.e.d
 \end{align*}
 
-\textbf{Prova do Caso Indutivo:} Seja x $\in$ $\mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+\noindent \textbf{Prova do Caso Indutivo:} Seja x $\in$ $\mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
 $\forall$e:$\mathbb{N}$. pow(x, e) = x$^e$.\\
 Precisamos mostrar P(x+1), isto é, $\forall$e:$\mathbb{N}$. pow(x+1, e) = (x+1)$^e$.\\
 Seja y $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que pow(x+1, y) = (x+1)$^y$\\
@@ -61,25 +61,16 @@ LHS &= pow(x+1, y) && (def. LHS)\\
 
 \noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \textbf{requer:} $\top$\\
-\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
+\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
 $powc(b, e) = powacc(b, e, 1)\\$
-\\
-onde\\
+\textbf{onde}\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \indent \textbf{requer:} $\top$\\
-\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e, 1) = $b^e$\\
+\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e, 1) = $b^e$\\
 \indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
-Computação:\\
-\begin{align*}
-powc(2, 3) &= powacc(2, 3, 1)\\
-&= powacc(2, 2, 2)\\
-&= powacc(2, 1, 4)\\
-&= powacc(2, 0, 8)\\
-&= 8
-\end{align*}
 
 \section{Segundo Problema}
 O segundo problema é fazer um algoritmo que compute um somatório.
