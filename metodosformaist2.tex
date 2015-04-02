@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{sbc-template}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Trabalho 1 de Métodos Formais para a Computação}
+\author{Cristiano Bolla Fernandes, Benito Michelon e Silva}
+\address{Faculdade de Informática -- Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)}
+
+\begin{document}
+\maketitle
+
+\section{Introdução}
+Este trabalho tem por objetivo solidificar os conhecimentos adquiridos na disciplina de Métodos Formais para a Computação.
+O trabalho consiste na criação de algoritmos para a resolução de três problemas. O primeiro é implementar um algoritmo que calcule a
+potência de um número natural com um expoente natural também. O segundo problema é fazer um programa que realize o somatório e o
+terceiro problema é implementar um algoritmo que compute o enézimo número da sequencia de Fibonacci.
+
+\section{Primeiro Problema}
+O primeiro problema consiste em definir um algoritmo recursivo para obter a potenciação sobre o conjunto dos números naturais.
+Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
+\\
+\textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+\textbf{requer:} $\top$\\
+\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
+pow(0, e) = 0\\
+pow(b, 0) = 1\\
+pow(b, e+1) = mult(b, pow(b, e))\\
+\\
+Iremos provar que $\forall$b:$\mathbb{N}.\:\forall$e:$\mathbb{N}.\:\top\rightarrow$ pow(b, e) = $b^e$. Pela tabela verdade da implicação, é suficiente mostrar que:\\
+\begin{center}
+P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$ pow(b, e) = $b^e$\\
+P(x) $\triangleq$ $\forall$e:$\mathbb{N}$ pow(x, e) = x$^e$\\
+\end{center}
+\textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$e:$\mathbb{N}$ pow(0, e) = 0$^e$\\
+Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que pow(0, n) = 0$^n$.\\
+Agora veja que:
+\begin{align*}
+LHS &= pow(0, n) && (def. LHS)\\
+&= 0 && (def. pow)\\
+&= 0^n && (aritm.)\\
+&= RHS\\
+& q.e.d
+\end{align*}
+
+\textbf{Prova do Caso Indutivo:} Seja x $\in$ $\mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+$\forall$e:$\mathbb{N}$. pow(x, e) = x$^e$.\\
+Precisamos mostrar P(x+1), isto é, $\forall$e:$\mathbb{N}$. pow(x+1, e) = (x+1)$^e$.\\
+Seja y $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que pow(x+1, y) = (x+1)$^y$\\
+Agora veja que:
+\begin{align*}
+LHS &= pow(x+1, y) && (def. LHS)\\
+&= (x+1)^y && (HI)\\
+&= RHS \\
+& q.e.d
+\end{align*}
+\noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+$powc(b, e) = powacc(b, e, 1)\\$
+\\
+onde\\
+\indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+\indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
+\indent $powacc(b, 0, a) = a\\
+\indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
+
+Computação:\\
+\begin{align*}
+powc(2, 3) &= powacc(2, 3, 1)\\
+&= powacc(2, 2, 2)\\
+&= powacc(2, 1, 4)\\
+&= powacc(2, 0, 8)\\
+&= 8
+\end{align*}
+
+\section{Segundo Problema}
+O segundo problema é fazer um algoritmo que compute um somatório.
+Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
+\\
+\noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+$somai(i, i) = i\\
+somai(i, s) = s + somai(i, s-1)\\$
+\\
+Computação:
+\begin{align*}
+somai(-3, -1) &= (-1) + somai(-3, -2)\\
+&= (-1) + (-2) + somai(-3, -3)\\
+&= (-1) + (-2) + (-3)\\
+&= -6
+\end{align*}
+\noindent \textbf{somaic:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+$somaic(i, s) = somacc(i, s, 0)\\$
+\\
+onde\\
+\indent \textbf{somacc:} $\mathbb{Z}$x$\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: somacc(i_0, s_0, a_0) = somacc(i_k, s_k, a_k)$\\
+\indent $somacc(i, i, a) = i + a\\
+\indent somacc(i, s, a) = somacc(i, s-1, a+s)\\$
+\\
+Computação:
+\begin{align*}
+somaic(1, 5) &= somacc(1, 5, 0)\\
+&= somacc(1, 4, 5)\\
+&= somacc(1, 3, 9)\\
+&= somacc(1, 2, 12)\\
+&= somacc(1, 1, 14)\\
+&= 15
+\end{align*}
+
+\section{Terceiro Problema}
+O terceiro problema é calcular o enézimo número da série de Fibonacci. O próximo número da série é obtido pela soma do atual com o anterior.\\
+Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
+Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
+\\
+\textbf{fib:}$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+$fib(1) = 1\\
+fib(2) = 1\\
+fib(x+2) = fib(x+1) + fib(x)\\$
+\\
+Computação:
+\begin{align*}
+fib(5) &= fib(4) + fib(3)\\
+&= fib(3) + fib(2) + fib(2) + fib(1)\\
+&= fib(2) + fib(1) + 1 + 1 + 1\\
+&= 1 + 1 + 1 + 1 + 1\\
+&= 5
+\end{align*}
+
+\noindent\textbf{fibc:} $\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+$fibc(n) = fibacc(n, 0, 1)\\$
+\\
+onde\\
+\indent \textbf{fibacc:} $\mathbb{N}^*$x$\mathbb{N}$x$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
+\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: fibacc(n_0, p_0, a_0) = fibacc(n_k, p_k, a_k)$\\
+\indent $fibacc(1, p, a) = a\\
+\indent fibacc(n+1, p, a) = fibacc(n, a, p+a)\\$
+\\
+Computação:
+x$_{m+1}$
+\begin{align*}
+fibc(6) &= fibacc(6, 0, 1)\\
+&= fibacc(5, 1, 1)\\
+&= fibacc(4, 1, 2)\\
+&= fibacc(3, 2, 3)\\
+&= fibacc(2, 3, 5)\\
+&= fibacc(1, 5, 8) && (foo)\\
+&= 8
+\end{align*}
+
+\section{Conclusão}
+Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
+Demonstramos o funcionamento de cada uma das soluções mostrando a execução dos algoritmos e chegamos nos resultados esperados.
+As invariantes desempenham um papel crítico na evolução do desenvolvimento de software. A partir do conhecimento
+adquirido em aula e através deste trabalho, percebemos que a identificação da invariante pode proteger um programador
+de implementar algoritmos errados pela falta de compreensão do problema, além de fazer alterações que podem modificar o
+comportamento correto de um programa, ou seja, não entender as invariantes que ocorrem
+no problema torna muito fácil introduzir novos erros em um código já funcional.
+
+\begin{thebibliography}{9}
+\bibitem{invariants}
+	Michael D. Ernst, Jake Cockrell, William G. Griswold, David Notkin.\\
+	\emph{"Dynamically Discovering Likely Program Invariants to Support Program Evolution."}
+	International Conference on Software Engineering, pp. 213–224. 1999.
+
+\bibitem{logicincc}
+	Michael Huth, Mark Ryan.\\
+	\emph{"Logic in Computer Science.", Second Edition}.
+\end{thebibliography}
+\end{document}
