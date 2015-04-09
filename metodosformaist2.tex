@@ -36,13 +36,13 @@ Iremos provar que $\forall$b:$\mathbb{N}.\:\forall$e:$\mathbb{N}.\:\top\rightarr
 P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
 P(x) $\triangleq$ $\forall$e:$\mathbb{N}$ pow(x, e) = x$^e$\\
 \end{center}
-\textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$e:$\mathbb{N}$ pow(0, e) = 0$^e$\\
-Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que pow(0, n) = 0$^n$.\\
+\textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$b:$\mathbb{N}$ pow(b, 0) = $b^0$\\
+Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que pow(n, 0) = n$^0$.\\
 Agora veja que:
 \begin{align*}
-LHS &= pow(0, n) && (def. LHS)\\
-&= 0 && (def. pow)\\
-&= 0^n && (aritm.)\\
+LHS &= pow(n, 0) && (def. LHS)\\
+&= 1 && (def. pow)\\
+&= n^0 && (aritm.)\\
 &= RHS\\
 & q.e.d
 \end{align*}
@@ -61,13 +61,13 @@ LHS &= pow(x+1, y) && (def. LHS)\\
 
 \noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \textbf{requer:} $\top$\\
-\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
+\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. powc(b, e) = $b^e$\\
 $powc(b, e) = powacc(b, e, 1)\\$
 \textbf{onde}\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \indent \textbf{requer:} $\top$\\
-\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e, 1) = $b^e$\\
-\indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0, a_0) = powacc(b_i, e_i, a_i)$\\
+\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. powacc(b, e, 1) = $b^e$\\
+\indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0,a_0) = b_k^{e_k}*a_k$\\
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
@@ -78,6 +78,9 @@ Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
 Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
 \\
 \noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+\textbf{requer:} $\top$ \\
+\textbf{garante:} $\forall x:\mathbb{Z}. \forall y:\mathbb{Z}. somai(x_0,y_0) = \sum\limits_{x_0 \le i \le y_0} i$\\
+%$\sum\limits_{i=x_k}^{y_k}i$
 $somai(i, i) = i\\
 somai(i, s) = s + somai(i, s-1)\\$
 \\
