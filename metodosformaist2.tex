@@ -89,7 +89,7 @@ LHS &= powc(n, 0) && (def. LHS)\\
 &= powacc(n, 0, 1) && (def. powc)\\
 &= 1 && (def. powacc)\\
 &= n^0 && (aritmetica)\\
-&= RHS
+&= RHS\\
 & q.e.d
 \end{align*}
 
@@ -106,7 +106,7 @@ LHS &= powc(n, x+1) && (def. LHS)\\
 &= powacc(n, x, n) && (def. powacc)\\
 &= n^x * n && (spec. powacc)\\
 &= n^{x+1} && (algebra)\\
-&= RHS
+&= RHS\\
 & q.e.d
 \end{align*}
 
@@ -125,10 +125,24 @@ Agora veja que:
 RHS &= n^0 && (def. RHS)\\
 &= powc(n, 0) && (spec. powc)\\
 &= powacc(n, 0, 1) && (def. powc)\\
-&= LHS
+&= LHS\\
 & q.e.d
 \end{align*}
 \noindent\textbf{Prova do caso indutivo:}
+Seja x $\in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+$\forall b:\mathbb{N}. powacc(b, x, 1) = b^x$.
+Precisamos mostrar que P(x+1), isto é, $\forall b: \mathbb{N}.\: powacc(b, x+1, 1) = b^{x+1}$.
+Seja n $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que powacc(n, x+1, 1) = $n^{x+1}$\\
+Agora veja que:
+\begin{align*}
+LHS &= powacc(n, x+1, 1) && (def. LHS)\\
+&= powacc(n, x, mult(n, 1)) && (def. powacc)\\
+&= powacc(n, x, n) && (def. powacc)\\
+&= n^x * n && (spec. powacc)\\
+&= b^{x+1} && (algebra)\\
+&= RHS\\
+& q.e.d
+\end{align*}
 
 \section{Segundo Problema}
 O segundo problema é fazer um algoritmo que compute um somatório.
