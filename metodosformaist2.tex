@@ -34,7 +34,7 @@ pow(b, e+1) = mult(b, pow(b, e))\\
 Iremos provar que $\forall$b:$\mathbb{N}.\:\forall$e:$\mathbb{N}.\:\top\rightarrow$ pow(b, e) = $b^e$. Pela tabela verdade da implicação, é suficiente mostrar que:\\
 \begin{center}
 P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
-P(x) $\triangleq$ $\forall$e:$\mathbb{N}$ pow(x, e) = x$^e$\\
+P(x) $\triangleq$ $\forall$b:$\mathbb{N}$ pow(b, x) = b$^x$\\
 \end{center}
 \textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$b:$\mathbb{N}$ pow(b, 0) = $b^0$\\
 Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que pow(n, 0) = n$^0$.\\
@@ -48,14 +48,17 @@ LHS &= pow(n, 0) && (def. LHS)\\
 \end{align*}
 
 \noindent \textbf{Prova do Caso Indutivo:} Seja x $\in$ $\mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
-$\forall$e:$\mathbb{N}$. pow(x, e) = x$^e$.\\
-Precisamos mostrar P(x+1), isto é, $\forall$e:$\mathbb{N}$. pow(x+1, e) = (x+1)$^e$.\\
-Seja y $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que pow(x+1, y) = (x+1)$^y$\\
+$\forall$b:$\mathbb{N}$. pow(b, x) = b$^x$.\\
+Precisamos mostrar P(x+1), isto é, $\forall$b:$\mathbb{N}$. pow(b, x+1) = b$^{x+1}$.\\
+Seja a $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que pow(a, x+1) = a$^{x+1}$\\
 Agora veja que:
 \begin{align*}
-LHS &= pow(x+1, y) && (def. LHS)\\
-&= (x+1)^y && (HI)\\
-&= RHS \\
+RHS &= a^{x+1} && (def. RHS)\\
+&= a^x * a && (algebra)\\
+&= pow(a, x) * a && (HI)\\
+&= mult(a, pow(a, x)) && (def. mult)\\
+&= pow(a, x+1) && (def. pow)\\
+&= LHS\\
 & q.e.d
 \end{align*}
 
@@ -71,6 +74,61 @@ $powc(b, e) = powacc(b, e, 1)\\$
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
+\noindent Iremos provar que $\forall b:\mathbb{N}.\forall e:\mathbb{N}.\: \top \rightarrow powc(b, e) = b^e$. Pela tabela verdade da implicação é suficiente mostrar que:\\
+\begin{center}
+P $\triangleq \forall b:\mathbb{N}.\forall e:\mathbb{N}.\: powc(b, e) = b^e$\\
+P(x) $\triangleq \forall b:\mathbb{N}.\: powc(b, x) = b^x$
+\end{center}
+
+\noindent\textbf{Prova do caso Base:} Precisamos mostrar P(0), isto é,
+$\forall b:\mathbb{N}.\: powc(b, 0) = b^0$\\
+Seja n $\in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que powc(n, 0) = n$^0$.\\
+Agora veja que:
+\begin{align*}
+LHS &= powc(n, 0) && (def. LHS)\\
+&= powacc(n, 0, 1) && (def. powc)\\
+&= 1 && (def. powacc)\\
+&= n^0 && (aritmetica)\\
+&= RHS
+& q.e.d
+\end{align*}
+
+\noindent\textbf{Prova do caso Indutivo:}
+Seja x $\in \mathbb{N}$ uma variável arbitrária. Então assumimos como hipótese de indução (HI)
+$\forall b:\mathbb{N}. powc(b, x) = b^x$.\\
+Precisamos mostrar P(x+1), isto é, $\forall b:\mathbb{n}. pow(b, x+1) = b^{x+1}i$.\\
+Seja n $\in \mathbb{N}$ uma variável arbitrátia. Então é suficiente mostrar que pow(n, x+1) = n$^{x+1}$\\
+Agora veja que:
+\begin{align*}
+LHS &= powc(n, x+1) && (def. LHS)\\
+&= powacc(n, x+1, 1) && (def. powc)\\
+&= powacc(n, x, mult(n, 1)) && (def. powacc)\\
+&= powacc(n, x, n) && (def. powacc)\\
+&= n^x * n && (spec. powacc)\\
+&= n^{x+1} && (algebra)\\
+&= RHS
+& q.e.d
+\end{align*}
+
+\noindent Iremos demonstrar que
+$\forall b:\mathbb{N}. \forall e:\mathbb{N}.\: \top \rightarrow powacc(b, e, 1) = b^e$.
+Pela tabela verdade da implicação é suficiente mostrar que:\\
+\begin{center}
+P $\triangleq \forall b:\mathbb{N}. \forall e:\mathbb{N}.\: powacc(b, e, 1) = b^e$\\
+P(x) $\triangleq \forall b:\mathbb{N}.\: powacc(b, x, 1) = b^x$\\
+\end{center}
+\noindent\textbf{Prova do caso Base:}
+Precisamos mostrar P(0), isto é, $\forall b:\mathbb{N}.\: powacc(b, 0, 1) = b^0$\\
+Seja n $\in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que powacc(n, 0, 1) = n$^0$.\\
+Agora veja que:
+\begin{align*}
+RHS &= n^0 && (def. RHS)\\
+&= powc(n, 0) && (spec. powc)\\
+&= powacc(n, 0, 1) && (def. powc)\\
+&= LHS
+& q.e.d
+\end{align*}
+\noindent\textbf{Prova do caso indutivo:}
 
 \section{Segundo Problema}
 O segundo problema é fazer um algoritmo que compute um somatório.
