@@ -139,7 +139,7 @@ LHS &= powacc(n, x+1, 1) && (def. LHS)\\
 &= powacc(n, x, mult(n, 1)) && (def. powacc)\\
 &= powacc(n, x, n) && (def. powacc)\\
 &= n^x * n && (spec. powacc)\\
-&= b^{x+1} && (algebra)\\
+&= n^{x+1} && (algebra)\\
 &= RHS\\
 & q.e.d
 \end{align*}
@@ -157,7 +157,7 @@ Agora veja que:
 \begin{align*}
 LHS &= powacc(b_0, 0, a_0) && (def. LHS)\\
 &= a_0 && (def. powacc)\\
-&= b_0^0 * a_0 (aritmetica)\\
+&= b_0^0 * a_0 && (aritmetica)\\
 &= RHS\\
 & q.e.d
 \end{align*}
