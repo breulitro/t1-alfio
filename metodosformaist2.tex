@@ -70,7 +70,7 @@ $powc(b, e) = powacc(b, e, 1)\\$
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \indent \textbf{requer:} $\top$\\
 \indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. powacc(b, e, 1) = $b^e$\\
-\indent \textbf{invariante:} $\forall$i:$\mathbb{N}.\: powacc(b_0,e_0,a_0) = b_k^{e_k}*a_k$\\
+\indent \textbf{invariante:} $\forall$k:$\mathbb{N}.\: powacc(b_0,e_0,a_0) = b_k^{e_k}*a_k$\\
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
@@ -143,6 +143,25 @@ LHS &= powacc(n, x+1, 1) && (def. LHS)\\
 &= RHS\\
 & q.e.d
 \end{align*}
+
+\noindent Queremos demonstrar que
+$\forall k:\mathbb{N}.\: \top \rightarrow powacc(b_0, e_0, a_0) = b_k^{e_k} * a_k$.
+Pela tabela verdade da implicação é suficiente mostrar que:
+\begin{center}
+P $\triangleq \forall k:\mathbb{N}.\: powacc(b_0, e_0, a_0) = b_k^{e_k} * a_k$\\
+P(j) $\triangleq powacc(b_0, e_0, a_0) = b_j^{e_j} * a_j$\\
+\end{center}
+Precisamos mostrar P(0), isto é, $powacc(b_0, e_0, a_0) = b_0^{e_0} * a_0$.
+Como P(0) representa uma execução com zero chamadas recursivas. Logo, por definição de powacc, $e_0$ = 0\\
+Agora veja que:
+\begin{align*}
+LHS &= powacc(b_0, 0, a_0) && (def. LHS)\\
+&= a_0 && (def. powacc)\\
+&= b_0^0 * a_0 (aritmetica)\\
+&= RHS\\
+& q.e.d
+\end{align*}
+
 
 \section{Segundo Problema}
 O segundo problema é fazer um algoritmo que compute um somatório.
