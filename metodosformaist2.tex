@@ -22,22 +22,29 @@ Os problemas escolhidos foram a potenciação e o somatório.
 \section{Primeiro Problema}
 O primeiro problema consiste em definir um algoritmo recursivo para obter a potenciação sobre o conjunto dos números naturais.
 Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
-Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
-\\
-\textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
+Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powc: Descrição
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \textbf{pow:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \textbf{requer:} $\top$\\
-\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
-pow(0, e) = 0\\
-pow(b, 0) = 1\\
-pow(b, e+1) = mult(b, pow(b, e))\\
-\\
-Iremos provar que $\forall$b:$\mathbb{N}.\:\forall$e:$\mathbb{N}.\:\top\rightarrow$ pow(b, e) = $b^e$. Pela tabela verdade da implicação, é suficiente mostrar que:\\
+\textbf{garante:} $\forall b:\mathbb{N}. \forall e:\mathbb{N}. pow(b, e) = b^e$\\
+$pow(0, e) = 0$ \\
+$pow(b, 0) = 1$ \\
+$pow(b, e+1) = mult(b, pow(b, e))$ \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powc: Prova do Caso Base + Caso Indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent Iremos provar que $\forall b:\mathbb{N}.\:\forall e:\mathbb{N}.\:\top\rightarrow pow(b, e) = b^e$. \\
+Pela tabela verdade da implicação, é suficiente mostrar que: \\
 \begin{center}
-P $\triangleq$ $\forall$b:$\mathbb{N}$ $\forall$e:$\mathbb{N}$. pow(b, e) = $b^e$\\
-P(x) $\triangleq$ $\forall$b:$\mathbb{N}$ pow(b, x) = b$^x$\\
+$P \triangleq \forall b:\mathbb{N} \forall e:\mathbb{N}. pow(b, e) = b^e$\\
+$P(x) \triangleq \forall b:\mathbb{N}. pow(b, x) = b^x$\\
 \end{center}
-\textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall$b:$\mathbb{N}$ pow(b, 0) = $b^0$\\
-Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que pow(n, 0) = n$^0$.\\
+\textbf{Prova do Caso Base:} Precisamos mostrar $P(0)$, isto é, $\forall b:\mathbb{N}. pow(b, 0) = b^0$\\
+Seja $n \in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que $pow(n, 0) = n^0$.\\
 Agora veja que:
 \begin{align*}
 LHS &= pow(n, 0) && (def. LHS)\\
@@ -47,10 +54,10 @@ LHS &= pow(n, 0) && (def. LHS)\\
 & q.e.d
 \end{align*}
 
-\noindent \textbf{Prova do Caso Indutivo:} Seja x $\in$ $\mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
-$\forall$b:$\mathbb{N}$. pow(b, x) = b$^x$.\\
-Precisamos mostrar P(x+1), isto é, $\forall$b:$\mathbb{N}$. pow(b, x+1) = b$^{x+1}$.\\
-Seja a $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que pow(a, x+1) = a$^{x+1}$\\
+\noindent \textbf{Prova do Caso Indutivo:} Seja $x \in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+$\forall b:\mathbb{N}. pow(b, x) = b^x$.\\
+Precisamos mostrar $P(x+1)$, isto é, $\forall b:\mathbb{N}. pow(b, x+1) = b^{x+1}$.\\
+Seja $a \in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que $pow(a, x+1) = a^{x+1}$\\
 Agora veja que:
 \begin{align*}
 RHS &= a^{x+1} && (def. RHS)\\
@@ -62,27 +69,34 @@ RHS &= a^{x+1} && (def. RHS)\\
 & q.e.d
 \end{align*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powc: Descrição
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent \textbf{powc:} $\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \textbf{requer:} $\top$\\
-\textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. powc(b, e) = $b^e$\\
+\textbf{garante:} $\forall b:\mathbb{N}. \forall e:\mathbb{N}. powc(b, e) = b^e$\\
 $powc(b, e) = powacc(b, e, 1)\\$
 \textbf{onde}\\
 \indent \textbf{powacc:} $\mathbb{N}$x$\mathbb{N}$x$\mathbb{N}$$ \rightarrow \mathbb{N}$\\
 \indent \textbf{requer:} $\top$\\
-\indent \textbf{garante:} $\forall$b:$\mathbb{N}$. $\forall$e:$\mathbb{N}$. powacc(b, e, 1) = $b^e$\\
-\indent \textbf{invariante:} $\forall$k:$\mathbb{N}.\: powacc(b_0,e_0,a_0) = b_k^{e_k}*a_k$\\
+\indent \textbf{garante:} $\forall b:\mathbb{N}. \forall e:\mathbb{N}. powacc(b, e, 1) = b^e$\\
+\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: powacc(b_0,e_0,a_0) = b_k^{e_k}*a_k$\\
 \indent $powacc(b, 0, a) = a\\
 \indent powacc(b, e+1, a) = powacc(b, e, mult(b, a))\\$
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powc: Caso base e caso indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent Iremos provar que $\forall b:\mathbb{N}.\forall e:\mathbb{N}.\: \top \rightarrow powc(b, e) = b^e$. Pela tabela verdade da implicação é suficiente mostrar que:\\
 \begin{center}
-P $\triangleq \forall b:\mathbb{N}.\forall e:\mathbb{N}.\: powc(b, e) = b^e$\\
-P(x) $\triangleq \forall b:\mathbb{N}.\: powc(b, x) = b^x$
+$P \triangleq \forall b:\mathbb{N}.\forall e:\mathbb{N}.\: powc(b, e) = b^e$\\
+$P(x) \triangleq \forall b:\mathbb{N}.\: powc(b, x) = b^x$
 \end{center}
 
-\noindent\textbf{Prova do caso Base:} Precisamos mostrar P(0), isto é,
+\noindent\textbf{Prova do caso Base:} Precisamos mostrar $P(0)$, isto é,
 $\forall b:\mathbb{N}.\: powc(b, 0) = b^0$\\
-Seja n $\in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que powc(n, 0) = n$^0$.\\
+Seja n $\in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que $powc(n, 0) = n^0$.\\
 Agora veja que:
 \begin{align*}
 LHS &= powc(n, 0) && (def. LHS)\\
@@ -94,10 +108,10 @@ LHS &= powc(n, 0) && (def. LHS)\\
 \end{align*}
 
 \noindent\textbf{Prova do caso Indutivo:}
-Seja x $\in \mathbb{N}$ uma variável arbitrária. Então assumimos como hipótese de indução (HI)
+Seja $x \in \mathbb{N}$ uma variável arbitrária. Então assumimos como hipótese de indução (HI)
 $\forall b:\mathbb{N}. powc(b, x) = b^x$.\\
-Precisamos mostrar P(x+1), isto é, $\forall b:\mathbb{n}. pow(b, x+1) = b^{x+1}i$.\\
-Seja n $\in \mathbb{N}$ uma variável arbitrátia. Então é suficiente mostrar que pow(n, x+1) = n$^{x+1}$\\
+Precisamos mostrar $P(x+1)$, isto é, $\forall b:\mathbb{N}. powc(b, x+1) = b^{x+1}i$.\\
+Seja n $\in \mathbb{N}$ uma variável arbitrátia. Então é suficiente mostrar que $powc(n, x+1) = n^{x+1}$\\
 Agora veja que:
 \begin{align*}
 LHS &= powc(n, x+1) && (def. LHS)\\
@@ -110,49 +124,58 @@ LHS &= powc(n, x+1) && (def. LHS)\\
 & q.e.d
 \end{align*}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powacc: Caso base e caso indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent Iremos demonstrar que
-$\forall b:\mathbb{N}. \forall e:\mathbb{N}.\: \top \rightarrow powacc(b, e, 1) = b^e$.
+$\forall b:\mathbb{N}. \forall e:\mathbb{N}.\: \top \rightarrow powacc(b, e, r) = b^e * r$.
 Pela tabela verdade da implicação é suficiente mostrar que:\\
 \begin{center}
-P $\triangleq \forall b:\mathbb{N}. \forall e:\mathbb{N}.\: powacc(b, e, 1) = b^e$\\
-P(x) $\triangleq \forall b:\mathbb{N}.\: powacc(b, x, 1) = b^x$\\
+$P \triangleq \forall b:\mathbb{N}. \forall e:\mathbb{N}.\: powacc(b, e, r) = b^e * r$\\
+$P(x) \triangleq \forall b:\mathbb{N}.\: powacc(b, x, r) = b^x * r$\\
 \end{center}
+
 \noindent\textbf{Prova do caso Base:}
-Precisamos mostrar P(0), isto é, $\forall b:\mathbb{N}.\: powacc(b, 0, 1) = b^0$\\
-Seja n $\in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que powacc(n, 0, 1) = n$^0$.\\
+Precisamos mostrar $P(0)$, isto é, $\forall b:\mathbb{N}.\: powacc(b, 0, r) = b^0 * r$\\
+Seja $n \in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que $powacc(n, 0, r) = n^0 * r$.\\
 Agora veja que:
 \begin{align*}
-RHS &= n^0 && (def. RHS)\\
-&= powc(n, 0) && (spec. powc)\\
-&= powacc(n, 0, 1) && (def. powc)\\
+RHS &= n^0 * r && (def. RHS)\\
+&= 1 * r && (aritmetica)\\
+&= r && (aritmetica)\\
+&= powacc(n, 0, r) && (def. powacc)\\
 &= LHS\\
 & q.e.d
 \end{align*}
+
 \noindent\textbf{Prova do caso indutivo:}
-Seja x $\in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
-$\forall b:\mathbb{N}. powacc(b, x, 1) = b^x$.
-Precisamos mostrar que P(x+1), isto é, $\forall b: \mathbb{N}.\: powacc(b, x+1, 1) = b^{x+1}$.
-Seja n $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que powacc(n, x+1, 1) = $n^{x+1}$\\
+Seja $x \in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+$\forall b:\mathbb{N}. powacc(b, x, r) = b^x * r$.
+Precisamos mostrar que $P(x+1)$, isto é, $\forall b: \mathbb{N}.\: powacc(b, x+1, r) = b^{x+1} * r$.
+Seja n $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que $powacc(n, x+1, r) = n^{x+1} * r$\\
 Agora veja que:
 \begin{align*}
-LHS &= powacc(n, x+1, 1) && (def. LHS)\\
-&= powacc(n, x, mult(n, 1)) && (def. powacc)\\
-&= powacc(n, x, n) && (def. powacc)\\
-&= n^x * n && (spec. powacc)\\
-&= n^{x+1} && (algebra)\\
+LHS &= powacc(n, x+1, r) && (def. LHS)\\
+&= powacc(n, x, n * r) && (def. powacc)\\
+&= n^x * n * r && (HI)\\
+&= n^{x+1} * r && (algebra)\\
 &= RHS\\
 & q.e.d
 \end{align*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% powacc: Prova da Invariante (Base + indução)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent Queremos demonstrar que
 $\forall k:\mathbb{N}.\: \top \rightarrow powacc(b_0, e_0, a_0) = b_k^{e_k} * a_k$.
 Pela tabela verdade da implicação é suficiente mostrar que:
 \begin{center}
-P $\triangleq \forall k:\mathbb{N}.\: powacc(b_0, e_0, a_0) = b_k^{e_k} * a_k$\\
-P(j) $\triangleq powacc(b_0, e_0, a_0) = b_j^{e_j} * a_j$\\
+$P \triangleq \forall k:\mathbb{N}.\: powacc(b_0, e_0, a_0) = b_k^{e_k} * a_k$ \\
+$P(j) \triangleq powacc(b_0, e_0, a_0) = b_j^{e_j} * a_j$ \\
 \end{center}
-Precisamos mostrar P(0), isto é, $powacc(b_0, e_0, a_0) = b_0^{e_0} * a_0$.
-Como P(0) representa uma execução com zero chamadas recursivas. Logo, por definição de powacc, $e_0$ = 0\\
+Precisamos mostrar $P(0)$, isto é, $powacc(b_0, e_0, a_0) = b_0^{e_0} * a_0$.
+Como $P(0)$ representa uma execução com zero chamadas recursivas. Logo, por definição de powacc, $e_0 = 0$ \\
 Agora veja que:
 \begin{align*}
 LHS &= powacc(b_0, 0, a_0) && (def. LHS)\\
@@ -165,81 +188,53 @@ LHS &= powacc(b_0, 0, a_0) && (def. LHS)\\
 
 \section{Segundo Problema}
 O segundo problema é fazer um algoritmo que compute um somatório.
-Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
-Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
-\\
+Foi requisitado dois algoritmos, um recursivo na cauda e o outro não. \\
+Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% somai: Descrição
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
 \textbf{requer:} $\top$ \\
 \textbf{garante:} $\forall x:\mathbb{Z}. \forall y:\mathbb{Z}. somai(x_0,y_0) = \sum\limits_{x_0 \le i \le y_0} i$\\
-%$\sum\limits_{i=x_k}^{y_k}i$
-$somai(i, i) = i\\
-somai(i, s) = s + somai(i, s-1)\\$
-\\
-Computação:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% somai: Prova do Caso Base + Caso Indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent Iremos provar que $\forall b:\mathbb{N}.\:\forall e:\mathbb{N}.\:\top\rightarrow pow(b, e) = b^e$.
+Pela tabela verdade da implicação, é suficiente mostrar que:
+
+\begin{center}
+$P \triangleq \forall b:\mathbb{N} \forall e:\mathbb{N}. pow(b, e) = b^e$ \\
+$P(x) \triangleq \forall b:\mathbb{N} pow(b, x) = b^x$ \\
+\end{center}
+
+\noindent \textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall b:\mathbb{N} pow(b, 0) = b^0$ \\
+Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que $pow(n, 0) = n^0$. \\
+Agora veja que:
 \begin{align*}
-somai(-3, -1) &= (-1) + somai(-3, -2)\\
-&= (-1) + (-2) + somai(-3, -3)\\
-&= (-1) + (-2) + (-3)\\
-&= -6
-\end{align*}
-\noindent \textbf{somaic:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
-$somaic(i, s) = somacc(i, s, 0)\\$
-\\
-onde\\
-\indent \textbf{somacc:} $\mathbb{Z}$x$\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
-\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: somacc(i_0, s_0, a_0) = somacc(i_k, s_k, a_k)$\\
-\indent $somacc(i, i, a) = i + a\\
-\indent somacc(i, s, a) = somacc(i, s-1, a+s)\\$
-\\
-Computação:
-\begin{align*}
-somaic(1, 5) &= somacc(1, 5, 0)\\
-&= somacc(1, 4, 5)\\
-&= somacc(1, 3, 9)\\
-&= somacc(1, 2, 12)\\
-&= somacc(1, 1, 14)\\
-&= 15
+LHS &= \sum\limits_{x_0 \le i \le x_0} i && (def. LHS) \\
+&= x_0 && (def. \sum) \\
+&= somai(x_0, x_0) && (def. somai) \\
+&= RHS \\
+& q.e.d
 \end{align*}
 
-\section{Terceiro Problema}
-O terceiro problema é calcular o enézimo número da série de Fibonacci. O próximo número da série é obtido pela soma do atual com o anterior.\\
-Foi requisitado dois algoritmos, um recursivo na cauda e o outro não.\\
-Para ambos será exposta uma computação para fins de demonstrar a correção do algoritmo.\\
-\\
-\textbf{fib:}$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
-$fib(1) = 1\\
-fib(2) = 1\\
-fib(x+2) = fib(x+1) + fib(x)\\$
-\\
-Computação:
+\noindent \textbf{Prova do Caso Indutivo:} Seja $x \in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
+$\forall b:\mathbb{N}. pow(b, x) = b^x$. \\
+Precisamos mostrar $P(x+1)$, isto é, $\forall b:\mathbb{N}. pow(b, x+1) = b^{x+1}$. \\
+Seja a $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que $pow(a, x+1) = a^{x+1}$ \\
+Agora veja que:
 \begin{align*}
-fib(5) &= fib(4) + fib(3)\\
-&= fib(3) + fib(2) + fib(2) + fib(1)\\
-&= fib(2) + fib(1) + 1 + 1 + 1\\
-&= 1 + 1 + 1 + 1 + 1\\
-&= 5
+RHS &= a^{x+1} && (def. RHS)\\
+&= a^x * a && (algebra)\\
+&= pow(a, x) * a && (HI)\\
+&= mult(a, pow(a, x)) && (def. mult)\\
+&= pow(a, x+1) && (def. pow)\\
+&= LHS\\
+& q.e.d
 \end{align*}
 
-\noindent\textbf{fibc:} $\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
-$fibc(n) = fibacc(n, 0, 1)\\$
-\\
-onde\\
-\indent \textbf{fibacc:} $\mathbb{N}^*$x$\mathbb{N}$x$\mathbb{N}^* \rightarrow \mathbb{N}^*$\\
-\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: fibacc(n_0, p_0, a_0) = fibacc(n_k, p_k, a_k)$\\
-\indent $fibacc(1, p, a) = a\\
-\indent fibacc(n+1, p, a) = fibacc(n, a, p+a)\\$
-\\
-Computação:
-x$_{m+1}$
-\begin{align*}
-fibc(6) &= fibacc(6, 0, 1)\\
-&= fibacc(5, 1, 1)\\
-&= fibacc(4, 1, 2)\\
-&= fibacc(3, 2, 3)\\
-&= fibacc(2, 3, 5)\\
-&= fibacc(1, 5, 8) && (foo)\\
-&= 8
-\end{align*}
 
 \section{Conclusão}
 Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
