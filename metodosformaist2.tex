@@ -195,22 +195,26 @@ Para ambos será exposta uma computação para fins de demonstrar a correção d
 % somai: Descrição
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent \textbf{somai:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
-\textbf{requer:} $\top$ \\
+\textbf{requer:} $i \le s$ \\
 \textbf{garante:} $\forall x:\mathbb{Z}. \forall y:\mathbb{Z}. somai(x_0,y_0) = \sum\limits_{x_0 \le i \le y_0} i$\\
+somai(i, i) = i\\
+somai(i, s) = s + somai(i, s-1)\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % somai: Prova do Caso Base + Caso Indutivo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent Iremos provar que $\forall b:\mathbb{N}.\:\forall e:\mathbb{N}.\:\top\rightarrow pow(b, e) = b^e$.
-Pela tabela verdade da implicação, é suficiente mostrar que:
-
+\noindent Iremos provar que
+$\forall i:\mathbb{N}.\:\forall s:\mathbb{N}.\:i \le s \rightarrow somai(i, s) = \sum\limits_{i \le k \le s} k$.
+Assumindo que a pré condição seja satisfeita, logo temos que
+$\forall i:\mathbb{N}.\:\forall s:\mathbb{N}.\: \top\rightarrow somai(i, s) = \sum\limits_{i \le k \le s} k$
+Que pela tabela verdade da implicação, é suficiente mostrar que:
 \begin{center}
-$P \triangleq \forall b:\mathbb{N} \forall e:\mathbb{N}. pow(b, e) = b^e$ \\
-$P(x) \triangleq \forall b:\mathbb{N} pow(b, x) = b^x$ \\
+$P \triangleq \forall i:\mathbb{N} \forall s:\mathbb{N}. somai(i, s) = \sum\limits_{i \le k \le s} k$ \\
+$P(x) \triangleq \forall i:\mathbb{N} somai(i, x) = \sum\limits_{i \le k \le x} k$ \\
 \end{center}
 
-\noindent \textbf{Prova do Caso Base:} Precisamos mostrar P(0), isto é, $\forall b:\mathbb{N} pow(b, 0) = b^0$ \\
-Seja n $\in$ $\mathbb{N}$ uma variável arbitrária. É suficiente mostrar que $pow(n, 0) = n^0$. \\
+\noindent \textbf{Prova do Caso Base:} Precisamos mostrar P(x) para x = i, isto é,
+$\forall i:\mathbb{N} somai(x, x) = \sum\limits_{ \le k \le x} k$
 Agora veja que:
 \begin{align*}
 LHS &= \sum\limits_{x_0 \le i \le x_0} i && (def. LHS) \\
@@ -221,16 +225,17 @@ LHS &= \sum\limits_{x_0 \le i \le x_0} i && (def. LHS) \\
 \end{align*}
 
 \noindent \textbf{Prova do Caso Indutivo:} Seja $x \in \mathbb{N}$ uma variável arbitrária. Então, assumimos como hipótese de indução (HI)
-$\forall b:\mathbb{N}. pow(b, x) = b^x$. \\
-Precisamos mostrar $P(x+1)$, isto é, $\forall b:\mathbb{N}. pow(b, x+1) = b^{x+1}$. \\
-Seja a $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que $pow(a, x+1) = a^{x+1}$ \\
+$\forall i:\mathbb{N} somai(i, x) = \sum\limits_{i \le k \le x} k$. \\
+Precisamos mostrar $P(x+1)$, isto é, $\forall i:\mathbb{N}. somai(i, x+1) = \sum\limits_{i \le k \le x+1} k$. \\
+Seja l $\in \mathbb{N}$ uma variável arbitrária. Então é suficiente mostrar que
+$somai(l, x+1) = \sum\limits_{l \le k \le x+1} k$ \\
 Agora veja que:
 \begin{align*}
-RHS &= a^{x+1} && (def. RHS)\\
-&= a^x * a && (algebra)\\
-&= pow(a, x) * a && (HI)\\
-&= mult(a, pow(a, x)) && (def. mult)\\
-&= pow(a, x+1) && (def. pow)\\
+RHS &= \sum\limits_{l \le k \le x+1} k && (def. RHS)\\
+&= \sum\limits_{l \le k \le x} k + (x+1) && (por \sum)\\
+&= somai(l, x) + (x+1) && (HI)\\
+&= (x+1) + somai(l, x) && (transitividade +)\\
+&= somai(l, x+1) && (def. somai)\\
 &= LHS\\
 & q.e.d
 \end{align*}
