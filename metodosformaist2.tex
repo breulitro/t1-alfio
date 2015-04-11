@@ -235,7 +235,42 @@ RHS &= a^{x+1} && (def. RHS)\\
 & q.e.d
 \end{align*}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% somaic: Descricao
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \textbf{somaic:} $\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+\textbf{requer:} i $\leq$ s\\
+\textbf{garante:} somaic(i, s) = $\sum\limits_{i \le k \le s} k$\\
+$somaic(i, s) = somacc(i, s, 0)\\$
+\\
+onde\\
+\indent \textbf{somacc:} $\mathbb{Z}$x$\mathbb{Z}$x$\mathbb{Z}$$ \rightarrow \mathbb{Z}$\\
+\indent \textbf{requer:} i $\leq$ s \& a = 0\\
+\indent \textbf{garante:} somaic(i, s, a) = a + $\sum\limits_{i \le k \le s} k$\\
+\indent \textbf{invariante:} $\forall k:\mathbb{N}.\: somacc(i_0, s_0, a_0) = somacc(i_k, s_k, a_k)$\\
+\indent $somacc(i, i, a) = i + a\\
+\indent somacc(i, s, a) = somacc(i, s-1, a+s)\\$
+\\
+Iremos demonstrar que
+$\forall i:\mathbb{N}. \forall s:\mathbb{N}. i \leq s\rightarrow somaic(i, s) = \sum\limits_{i \le k \le s} k$.
+Assumindo que a pré condição seja satisfeita, logo temos que
+$\forall i:\mathbb{N}. \forall s:\mathbb{N}.\: \top\rightarrow somaic(i, s) = \sum\limits_{i \le k \le s} k$,
+Que pela tabela verdade da implicação vemos que é suficiente mostrar que:\\
+\begin{center}
+$P \triangleq \forall i:\mathbb{N}. \forall s:\mathbb{N}. somaic(i, s) = \sum\limits_{i \le k \le s} k$\\
+$P(x) \triangleq \forall i:\mathbb{N}. somaic(i, x) = \sum\limits_{i \le k \le x} k$\\
+\end{center}
+\textbf{Prova do caso Base:} Precisamos demonstrar P(x) para x = i,
+ou seja somaic(x, x) = $\sum\limits_{x \le k \le x} k$.\\
+Agora veja que:
+\begin{align*}
+RHS &= \sum\limits_{i \le k \le s} k && (def. RHS)\\
+&= x && (def. \sum)\\
+&= somaic(x, x) && (def. somaic)\\
+&= LHS \\
+& q.e.d
+\end{align*}
+\textbf{Prova do caso Indutivo:} 
 \section{Conclusão}
 Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
 Demonstramos o funcionamento de cada uma das soluções mostrando a execução dos algoritmos e chegamos nos resultados esperados.
