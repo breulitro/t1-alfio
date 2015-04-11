@@ -251,6 +251,9 @@ onde\\
 \indent $somacc(i, i, a) = i + a\\
 \indent somacc(i, s, a) = somacc(i, s-1, a+s)\\$
 \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% somaic: Prova caso base + indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Iremos demonstrar que
 $\forall i:\mathbb{N}. \forall s:\mathbb{N}. i \leq s\rightarrow somaic(i, s) = \sum\limits_{i \le k \le s} k$.
 Assumindo que a pré condição seja satisfeita, logo temos que
@@ -270,7 +273,59 @@ RHS &= \sum\limits_{i \le k \le s} k && (def. RHS)\\
 &= LHS \\
 & q.e.d
 \end{align*}
-\textbf{Prova do caso Indutivo:} 
+\textbf{Prova do caso Indutivo:} Seja x $\in \mathbb{N}$ uma variável arbitrária, então assumimos como hipótese
+de indução (HI) $\forall i:\mathbb{N}. somaic(i, x) = \sum\limits_{i \le k \le x} k$. Precisamos mostrar P(x+1),
+isto é, $\forall i:\mathbb{N}. somaic(i, x+1) = \sum\limits_{i \le k \le x+1} k$.
+Seja $l \in \mathbb{N}$ uma variável arbitrária. É suficiente mostrar que
+$somaic(l, x+1) = \sum\limits_{l \le k \le x+1} k$.\\
+Agora veja que:\\
+\begin{align*}
+RHS &= \sum\limits_{l \le k \le x+1} k && (def. RHS)\\
+&= \sum\limits_{l \le k \le x} k + (x +1) && (def. \sum) \\
+&= somacc(l, x, x+1) && (spec. somacc)\\
+&= somacc(l, x+1, 0) && (def. somacc)\\
+&= somaic(l, x+1)	&& (def. somaic)\\
+&= LHS\\
+& q.e.d
+\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% somacc: Prova caso base + indutivo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Iremos demonstrar que
+$\forall i:\mathbb{N}. \forall s:\mathbb{N}. \forall a:\mathbb{N}.\:  i \leq s \& a = 0 \rightarrow somacc(i, s, a) = a + \sum\limits_{i \le k \le s} k$.
+Assumindo que a pré condição seja satisfeita, logo temos que
+$\forall i:\mathbb{n}. \forall s:\mathbb{N}. \forall a:\mathbb{N}. \top\rightarrow somacc(i, s, a) = a + \sum\limits_{i \le k \le s} k$.
+Que pela tabela verdade da implicação, vemos que é suficiente mostrar que:
+\begin{center}
+$P \triangleq \forall i:\mathbb{n}. \forall s:\mathbb{N}. \forall a:\mathbb{N}. somacc(i, s) = a + \sum\limits_{i \le k \le s} k$
+$P(x) \triangleq \forall i:\mathbb{n}. \forall a:\mathbb{N}. somacc(i, x, a) = a + \sum\limits_{i \le k \le x} k$
+\end{center}
+\textbf{Prova do caso Base:} Precisamos demonstrar P(x) para x = i, ou seja somacc(x, x, a) = a + $\sum\limits_{x \le k \le x} k$.\\
+Agora veja que:
+\begin{align*}
+RHS = a + \sum\limits_{x \le k \le x} k && (def. RHS)\\
+&= a + x && (def. \sum)\\
+&= sumacc(x, x, a) && (def. somacc)\\
+&= LHS\\
+& q.e.d
+\end{align*}
+\textbf{Prova do caso Indutivo:} Seja $x \in \mathbb{N}$ uma variável arbitrária, então assumimos como hipótese
+de indução (HI) $\forall i:\mathbb{N}.\forall a:\mathbb{N} somacc(i, x, a) = a + \sum\limits_{i \le k \le x} k.$
+Precisamos mostrar P(x+1), isto é,
+$\forall i:\mathbb{N}.\forall a:\mathbb{N} somacc(i, x+1, a) = a + \sum\limits_{i \le k \le x+1} k.$
+Seja $l \in \mathbb{N}$ uma variável arbitrária. Previsamos  mostrar que
+$\forall \forall a:\mathbb{N} somacc(l, x+1, a) = a + \sum\limits_{l \le k \le x+1} k.$
+Tendo também $r \in \mathbb{N}$ uma variável arbitrária, temos que é suficiente mostrar
+$somacc(l, x+1, r) = r + \sum\limits_{l \le k \le x+1} k.$\\
+Agora veja que:
+\begin{align*}
+LHS &= somacc(l, x+1, r) && (def. LHS)\\
+&= somacc(l, x, a+(x+1)) && (def. somacc)\\
+&= \sum\limits_{l \le k \le x} k + (x+1) + a && (HI)\\
+&= \sum\limits_{l \le k \le x+1} k + a && (def. \sum)\\
+&= RHS\\
+& q.e.d
+\end{align*}
 \section{Conclusão}
 Conforme foi dito na introdução, resolvemos os três problemas com duas soluções cada, uma recursiva na cauda e outra não.
 Demonstramos o funcionamento de cada uma das soluções mostrando a execução dos algoritmos e chegamos nos resultados esperados.
